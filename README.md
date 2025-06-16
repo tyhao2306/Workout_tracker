@@ -13,6 +13,15 @@ User authentication:
 - View all exercises tied to a selected workout
 - Dynamic frontend forms
 
+## Tech stack
+| Frontend     | React + Axios        |
+| Backend      | FastAPI              |
+| Auth         | JWT (`python-jose`)  |
+| Password Hashing | Passlib (`bcrypt`) |
+| Database     | PostgreSQL           |
+| ORM          | SQLAlchemy           |
+| Dev Env      | Docker (optional), `.venv` |
+| API Testing  | FastAPI Docs (Swagger UI) |
 
 Step 1:
 Install the necessary dependencies for the backend. The libraries needed are Fastapi, psycopg,jose cryptography,sqlalchemy,passlib bcrypt, python-multipart. 
