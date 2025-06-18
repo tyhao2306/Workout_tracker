@@ -52,29 +52,88 @@ function Login(){
         }
     };
 
+    const handleCreateUser = async () => {
+        if (!validateForm()) return;
+
+        setLoading(true);
+
+        try {
+            const response = await fetch('http://localhost:8000/auth/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            });
+
+            setLoading(false);
+
+            if (response.ok) {
+                alert('User created! You can now log in.');
+            } else {
+                const errorData = await response.json();
+                setError(errorData.detail || 'Failed to create user.');
+            }
+        } catch (error) {
+            setLoading(false);
+            setError('Error occurred during user creation.');
+        }
+    };
+
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div style={{
+            display: 'flex',
+            height: '100vh',
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: '#f5f5f5'
+        }}>
+            <form
+                onSubmit={handleSubmit}
+                style={{
+                    backgroundColor: 'white',
+                    padding: '2rem',
+                    borderRadius: '8px',
+                    boxShadow: '0 0 10px rgba(0,0,0,0.1)',
+                    width: '300px'
+                }}
+            >
+                <h2 style={{ textAlign: 'center' }}>Login</h2>
                 <div>
                     <label>Username:</label>
                     <input
-                      type = "text"
-                      value = {username}
-                      onChange={(e) => setUsername(e.target.value)}
+                        type="text"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        style={{ width: '100%', marginBottom: '1rem' }}
                     />
                 </div>
                 <div>
                     <label>Password:</label>
                     <input
-                      type = "text"
-                      value = {password}
-                      onChange={(e) => setPassword(e.target.value)}
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        style={{ width: '100%', marginBottom: '1rem' }}
                     />
                 </div>
-                <button type="submit" disabled={loading}>
-                    {loading ? 'Logging in...': 'Login'}
+                <button type="submit" disabled={loading} style={{ width: '100%' }}>
+                    {loading ? 'Logging in...' : 'Login'}
                 </button>
-                {error && <p style={{color: 'red'}}>{error}</p>}
+                <button
+                    type="button"
+                    onClick={handleCreateUser}
+                    disabled={loading}
+                    style={{
+                        width: '100%',
+                        marginTop: '0.5rem',
+                        backgroundColor: '#eee',
+                        border: '1px solid #ccc'
+                    }}
+                >
+                    {loading ? 'Creating...' : 'Create Account'}
+                </button>
+                {error && <p style={{ color: 'red', marginTop: '1rem' }}>{error}</p>}
             </form>
         </div>
     );

@@ -33,4 +33,8 @@ backend/
 
 Step 2: 
 create a react app with npx create-app.
+<<<<<<< HEAD
 import axios 
+=======
+import axios 
+>>>>>>> 8165527 (Updated login page)
