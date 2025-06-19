@@ -22,6 +22,8 @@ User authentication:
 - ORM: SQLAlchemy
 - API Testing: FastAPI docs (Swagger UI)
 
+<img width="1436" alt="Image" src="https://github.com/user-attachments/assets/7087438e-b880-45c9-9249-fc027dd9b097" />
+
 Step 1:
 Install the necessary dependencies for the backend. The libraries needed are Fastapi, psycopg,jose cryptography,sqlalchemy,passlib bcrypt, python-multipart. 
 
